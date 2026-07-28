@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact | CF Consulting Services Corp</title>
-<meta name="description" content="Request a Discovery Audit from CF Consulting Services Corp, or email info@CFCS.com.">
+<meta name="description" content="Schedule a call with CF Consulting Services Corp, or email info@CFCS.com.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
         <li><a href="aws-cloud-architecture.html">AWS Cloud Architecture</a></li>
         <li><a href="contact.html" aria-current="page">Contact</a></li>
       </ul>
-      <a href="contact.html" class="btn btn-primary">Request a Discovery Audit</a>
+      <a href="contact.html" class="btn btn-primary btn-nav">Schedule a call</a>
     </nav>
   </div>
 </header>
@@ -42,13 +42,13 @@
 
         <div class="contact-aside reveal">
           <div class="label"><span class="dot" aria-hidden="true"></span><span>Get started</span></div>
-          <h1 class="display-section" style="margin:1.5rem 0 1rem;">Request a <span class="gradient-text">Discovery Audit</span></h1>
-          <p class="lead">Tell us about your current DL4 setup and institution size. We follow up within one business day to confirm scope and fixed pricing before anything is signed.</p>
+          <h1 class="display-section" style="margin:1.5rem 0 1rem;">Schedule a <span class="gradient-text">call</span></h1>
+          <p class="lead">Tell us which offering you need help with and a bit about your current setup. We follow up within one business day. Discovery is $850 flat, separate from any retainer, and is where band placement is set.</p>
 
           <ul class="expect-list">
             <li><span class="num" aria-hidden="true">1</span><span>You send a short note about your current setup.</span></li>
-            <li><span class="num" aria-hidden="true">2</span><span>We reply within one business day with scope and a fixed price.</span></li>
-            <li><span class="num" aria-hidden="true">3</span><span>The audit runs, and you get a written assessment either way.</span></li>
+            <li><span class="num" aria-hidden="true">2</span><span>We reply within one business day to confirm the $850 discovery scope.</span></li>
+            <li><span class="num" aria-hidden="true">3</span><span>Discovery runs. You get workload findings, band placement, and a clear retainer recommendation.</span></li>
           </ul>
 
           <div class="direct">
@@ -99,13 +99,26 @@
 
           <div class="form-row">
             <div class="field full">
-              <label for="message">Your current DL4 setup, in a sentence or two</label>
-              <textarea id="message" name="message" rows="4" placeholder="Live on DL4 since 2023, no dedicated LOS admin, IT covers it as time allows."></textarea>
+              <label for="service">Which offering</label>
+              <select id="service" name="service" required>
+                <option value="">Select one</option>
+                <option>DL4 Administration</option>
+                <option>AWS Cloud Architecture</option>
+                <option>Both, as separate engagements</option>
+                <option>Not sure yet</option>
+              </select>
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Request a Discovery Audit <span class="arrow" aria-hidden="true">&rarr;</span></button>
-          <p class="form-fine">Fixed fee scope of $5,000 to $8,000, confirmed in writing before any work begins.</p>
+          <div class="form-row">
+            <div class="field full">
+              <label for="message">Your current setup, in a sentence or two</label>
+              <textarea id="message" name="message" rows="4" placeholder="Example: Live on DL4 since 2023 with no dedicated admin, or migrating workloads to AWS and need architecture support."></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Schedule a call</button>
+          <p class="form-fine">Discovery is $850 flat fee, separate from the retainer, confirmed in writing before any work begins.</p>
         </form>
 
       </div>
@@ -122,7 +135,7 @@
           <span class="glyph" aria-hidden="true">CF</span>
           <span class="name">CF Consulting<small>Services Corp</small></span>
         </a>
-        <p class="blurb">MeridianLink DecisionLender 4 administration and AWS cloud architecture for credit unions. Independent since 2022.</p>
+        <p class="blurb">DecisionLender 4 administration and AWS cloud architecture. Two primary offerings, engaged separately. Independent since 2022.</p>
       </div>
       <div class="footer-col">
         <h4>Services</h4>

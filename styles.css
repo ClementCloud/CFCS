@@ -210,6 +210,26 @@ textarea:focus-visible{
 
 .btn-lg{height:3.5rem;padding:0 2rem;font-size:1rem;}
 .btn-block{width:100%;}
+.btn-nav{
+  height:2.5rem;
+  padding:0 1.125rem;
+  font-size:0.875rem;
+  font-weight:500;
+  letter-spacing:0;
+  border-radius:var(--radius-lg);
+  background:var(--foreground);
+  color:var(--accent-foreground);
+  box-shadow:none;
+}
+.btn-nav:hover{
+  background:var(--accent);
+  color:var(--accent-foreground);
+  filter:none;
+  box-shadow:none;
+  transform:none;
+}
+.btn-nav:active{transform:none;}
+.btn-nav .arrow{display:none;}
 
 /* ============================================================
    HEADER
@@ -249,16 +269,16 @@ textarea:focus-visible{
   text-transform:uppercase;
   color:var(--muted-foreground);
 }
-.site-nav{display:flex;align-items:center;gap:2rem;}
-.site-nav ul{display:flex;align-items:center;gap:2rem;}
-.site-nav a{
+.site-nav{display:flex;align-items:center;gap:1.75rem;}
+.site-nav ul{display:flex;align-items:center;gap:1.75rem;}
+.site-nav ul a{
   font-size:0.9375rem;color:var(--muted-foreground);
   transition:color 200ms ease-out;
   position:relative;padding:0.25rem 0;
 }
-.site-nav a:hover{color:var(--foreground);}
-.site-nav a[aria-current="page"]{color:var(--foreground);font-weight:500;}
-.site-nav a[aria-current="page"]::after{
+.site-nav ul a:hover{color:var(--foreground);}
+.site-nav ul a[aria-current="page"]{color:var(--foreground);font-weight:500;}
+.site-nav ul a[aria-current="page"]::after{
   content:"";position:absolute;left:0;bottom:-0.125rem;
   height:2px;width:100%;border-radius:2px;background:var(--gradient);
 }
@@ -525,12 +545,13 @@ textarea:focus-visible{
 /* ============================================================
    PROCESS TIMELINE
    ============================================================ */
-.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;position:relative;}
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;position:relative;list-style:none;margin:0;padding:0;}
 .timeline::before{
   content:"";position:absolute;top:3.25rem;left:12%;right:12%;
   height:1px;background:linear-gradient(to right, rgba(255,255,255,0.05), rgba(255,255,255,0.20), rgba(255,255,255,0.05));
 }
 .stage{position:relative;padding-top:0;}
+.stage::marker{content:"";}
 .stage .stage-no{
   width:3.5rem;height:3.5rem;
   border-radius:var(--radius-full);
@@ -634,7 +655,7 @@ textarea:focus-visible{
 /* ============================================================
    STATS BAND (inverted)
    ============================================================ */
-.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
 .stat{padding:0 2rem;border-left:1px solid rgba(255,255,255,0.12);}
 .stat:first-child{padding-left:0;border-left:none;}
 .stat b{
@@ -790,8 +811,8 @@ textarea:focus-visible{
   }
   .site-nav.open{display:flex;}
   .site-nav ul{flex-direction:column;align-items:stretch;gap:0.25rem;}
-  .site-nav a{padding:0.75rem 0;font-size:1rem;}
-  .site-nav .btn{width:100%;}
+  .site-nav ul a{padding:0.75rem 0;font-size:1rem;}
+  .site-nav .btn-nav{width:100%;height:3rem;}
   .nav-toggle{display:inline-flex;}
   .site-header .inner{position:relative;}
 
