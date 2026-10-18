@@ -13,6 +13,8 @@
   --muted-foreground:#64748B;
   --accent:#0052FF;
   --accent-secondary:#4D7CFF;
+  --accent-rgb:0,82,255;
+  --accent-secondary-rgb:77,124,255;
   --accent-foreground:#FFFFFF;
   --border:#E2E8F0;
   --card:#FFFFFF;
@@ -27,8 +29,8 @@
   --shadow-md:0 4px 6px rgba(0,0,0,0.07);
   --shadow-lg:0 10px 15px rgba(0,0,0,0.08);
   --shadow-xl:0 20px 25px rgba(0,0,0,0.10);
-  --shadow-accent:0 4px 14px rgba(0,82,255,0.25);
-  --shadow-accent-lg:0 8px 24px rgba(0,82,255,0.35);
+  --shadow-accent:0 4px 14px rgba(var(--accent-rgb),0.25);
+  --shadow-accent-lg:0 8px 24px rgba(var(--accent-rgb),0.35);
 
   /* ---- Radii ---- */
   --radius-lg:0.5rem;
@@ -47,6 +49,33 @@
 
   /* ---- Motion ---- */
   --ease-out:cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- Offering accents ---- */
+  /* DL4 keeps the house Electric Blue. The cloud offering carries its own
+     cyan so the two practices are distinguishable at a glance. Both pass
+     WCAG AA for normal text on the light surfaces. */
+  --accent-cloud:#0E7490;
+  --accent-cloud-secondary:#2DA8C7;
+  --accent-cloud-rgb:14,116,144;
+  --accent-cloud-secondary-rgb:45,168,199;
+}
+
+/* Scope the cloud offering's colour. Every component below reads the accent
+   tokens, so retinting them here recolours buttons, labels, gradients,
+   ticks, focus rings and shadows with no per-component overrides. */
+.theme-cloud{
+  --accent:var(--accent-cloud);
+  --accent-secondary:var(--accent-cloud-secondary);
+  --accent-rgb:var(--accent-cloud-rgb);
+  --accent-secondary-rgb:var(--accent-cloud-secondary-rgb);
+  --ring:var(--accent-cloud);
+  --shadow-accent:0 4px 14px rgba(var(--accent-cloud-rgb),0.25);
+  --shadow-accent-lg:0 8px 24px rgba(var(--accent-cloud-rgb),0.35);
+  /* The gradients must be redeclared, not inherited: a var() inside a custom
+     property is substituted where that property is DECLARED, so the :root
+     copies resolve to the house blue before any descendant sees them. */
+  --gradient:linear-gradient(to right, var(--accent-cloud), var(--accent-cloud-secondary));
+  --gradient-diagonal:linear-gradient(135deg, var(--accent-cloud), var(--accent-cloud-secondary));
 }
 
 /* ============================================================
@@ -109,7 +138,7 @@ textarea:focus-visible{
   bottom:-0.25rem;left:0;
   height:0.75rem;width:100%;
   border-radius:0.125rem;
-  background:linear-gradient(to right, rgba(0,82,255,0.15), rgba(77,124,255,0.10));
+  background:linear-gradient(to right, rgba(var(--accent-rgb),0.15), rgba(var(--accent-secondary-rgb),0.10));
   z-index:-1;
 }
 
@@ -130,8 +159,8 @@ textarea:focus-visible{
 /* Section label badge, the orienting device at the top of each section. */
 .label{
   display:inline-flex;align-items:center;gap:0.75rem;
-  border:1px solid rgba(0,82,255,0.30);
-  background:rgba(0,82,255,0.05);
+  border:1px solid rgba(var(--accent-rgb),0.30);
+  background:rgba(var(--accent-rgb),0.05);
   border-radius:var(--radius-full);
   padding:0.5rem 1.25rem;
 }
@@ -195,7 +224,7 @@ textarea:focus-visible{
 }
 .btn-outline:hover{
   background:var(--muted);
-  border-color:rgba(0,82,255,0.30);
+  border-color:rgba(var(--accent-rgb),0.30);
   box-shadow:var(--shadow-sm);
   transform:translateY(-2px);
 }
@@ -360,7 +389,7 @@ textarea:focus-visible{
 .ring{
   position:absolute;
   width:26rem;height:26rem;
-  border:1px dashed rgba(0,82,255,0.25);
+  border:1px dashed rgba(var(--accent-rgb),0.25);
   border-radius:var(--radius-full);
   animation:spin 72s linear infinite;
 }
@@ -374,9 +403,9 @@ textarea:focus-visible{
 .ring-inner{
   position:absolute;
   width:19rem;height:19rem;
-  border:1px solid rgba(0,82,255,0.10);
+  border:1px solid rgba(var(--accent-rgb),0.10);
   border-radius:var(--radius-full);
-  background:radial-gradient(circle at 50% 50%, rgba(0,82,255,0.08), transparent 70%);
+  background:radial-gradient(circle at 50% 50%, rgba(var(--accent-rgb),0.08), transparent 70%);
 }
 @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 
@@ -453,7 +482,7 @@ textarea:focus-visible{
 }
 .card::before{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(135deg, rgba(0,82,255,0.03), transparent 60%);
+  background:linear-gradient(135deg, rgba(var(--accent-rgb),0.03), transparent 60%);
   opacity:0;transition:opacity 300ms ease-out;pointer-events:none;
 }
 .card:hover{box-shadow:var(--shadow-xl);transform:translateY(-4px);}
@@ -491,7 +520,7 @@ textarea:focus-visible{
 .feature-list .tick{
   flex-shrink:0;width:1.5rem;height:1.5rem;margin-top:0.1875rem;
   border-radius:var(--radius-full);
-  background:rgba(0,82,255,0.10);
+  background:rgba(var(--accent-rgb),0.10);
   display:flex;align-items:center;justify-content:center;
   color:var(--accent);
 }
@@ -502,7 +531,7 @@ textarea:focus-visible{
    CLIENT LOGO WALL
    ============================================================ */
 .logo-wall{
-  display:grid;grid-template-columns:repeat(4,1fr);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(11.5rem,1fr));
   gap:1.5rem;
 }
 .logo-tile{
@@ -517,7 +546,7 @@ textarea:focus-visible{
 .logo-tile:hover{
   box-shadow:var(--shadow-lg);
   transform:translateY(-3px);
-  border-color:rgba(0,82,255,0.25);
+  border-color:rgba(var(--accent-rgb),0.25);
 }
 .logo-tile .wordmark{
   font-family:var(--font-display);
@@ -539,12 +568,51 @@ textarea:focus-visible{
   color:var(--muted-foreground);
   margin:0 0 1rem;
 }
-/* A lone current client reads as featured rather than as a gap in the grid. */
-.logo-wall-current{grid-template-columns:repeat(2,1fr);}
-.logo-wall-current .logo-tile{min-height:8.5rem;}
-.logo-wall-current .wordmark{font-size:1.375rem;color:var(--foreground);}
-.logo-wall-current .logo-tile{border-color:rgba(0,82,255,0.25);box-shadow:var(--shadow-md);}
-.logo-wall-prior{grid-template-columns:repeat(3,1fr);}
+
+/* ============================================================
+   CREDENTIALS
+   ============================================================ */
+.cred-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.cred-grid .card{padding:2rem;}
+.cred-grid .card h3{font-size:1.25rem;}
+
+.cert-list{list-style:none;margin:1.25rem 0 0;padding:0;display:flex;flex-direction:column;gap:0.875rem;}
+.cert-list li{
+  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  padding-bottom:0.875rem;border-bottom:1px solid var(--border);
+}
+.cert-list li:last-child{border-bottom:none;padding-bottom:0;}
+.cert-list .cert-name{font-size:0.9375rem;font-weight:500;color:var(--foreground);}
+.cert-list .cert-body{
+  font-family:var(--font-mono);font-size:0.6875rem;
+  text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--muted-foreground);white-space:nowrap;
+}
+
+/* Capability matrix: what the practice covers, by domain. */
+.matrix{width:100%;border-collapse:collapse;margin-top:2rem;}
+.matrix caption{text-align:left;font-size:0.9375rem;color:var(--muted-foreground);padding-bottom:1rem;}
+.matrix th,.matrix td{text-align:left;padding:1rem 1.25rem;border-bottom:1px solid var(--border);vertical-align:top;}
+.matrix thead th{
+  font-family:var(--font-mono);font-size:0.6875rem;font-weight:400;
+  text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--muted-foreground);border-bottom-width:1px;
+}
+.matrix tbody th{font-size:0.9375rem;font-weight:600;color:var(--foreground);width:28%;}
+.matrix tbody td{font-size:0.9375rem;color:var(--muted-foreground);line-height:1.6;}
+.matrix tbody tr:last-child th,.matrix tbody tr:last-child td{border-bottom:none;}
+
+.domain-tag{
+  display:inline-block;
+  font-family:var(--font-mono);font-size:0.6875rem;
+  text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--accent);
+  background:rgba(var(--accent-rgb),0.08);
+  border:1px solid rgba(var(--accent-rgb),0.20);
+  border-radius:var(--radius-full);
+  padding:0.3125rem 0.75rem;
+  margin:0 0.375rem 0.5rem 0;
+}
 
 /* ============================================================
    PROCESS TIMELINE
@@ -701,7 +769,7 @@ textarea:focus-visible{
 }
 .field textarea{height:auto;padding:0.75rem 0.875rem;resize:vertical;line-height:1.6;}
 .field input::placeholder,.field textarea::placeholder{color:rgba(100,116,139,0.5);}
-.field input:hover,.field select:hover,.field textarea:hover{border-color:rgba(0,82,255,0.30);}
+.field input:hover,.field select:hover,.field textarea:hover{border-color:rgba(var(--accent-rgb),0.30);}
 .form-fine{
   margin-top:1rem;text-align:center;
   font-size:0.8125rem;color:var(--muted-foreground);
@@ -719,7 +787,7 @@ textarea:focus-visible{
 .expect-list li{display:flex;gap:0.875rem;font-size:0.9375rem;color:var(--muted-foreground);}
 .expect-list .num{
   flex-shrink:0;width:1.5rem;height:1.5rem;border-radius:var(--radius-full);
-  background:rgba(0,82,255,0.10);color:var(--accent);
+  background:rgba(var(--accent-rgb),0.10);color:var(--accent);
   font-family:var(--font-mono);font-size:0.6875rem;
   display:flex;align-items:center;justify-content:center;
 }
@@ -797,6 +865,7 @@ textarea:focus-visible{
   .hero-grid{grid-template-columns:1fr;gap:3rem;}
   .hero-figure{display:none;}
   .split{grid-template-columns:1fr;gap:2.5rem;}
+  .cred-grid{grid-template-columns:repeat(2,1fr);}
   .contact-grid{grid-template-columns:1fr;gap:2.5rem;}
   .footer-top{grid-template-columns:1fr 1fr;}
 }
@@ -820,7 +889,12 @@ textarea:focus-visible{
   .site-header .inner{position:relative;}
 
   .section{padding:5rem 0;}
-  .offer-grid,.tier-grid,.timeline{grid-template-columns:1fr;}
+  .offer-grid,.tier-grid,.timeline,.cred-grid{grid-template-columns:1fr;}
+  .matrix thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  .matrix tbody th,.matrix tbody td{display:block;width:auto;padding:0.5rem 0;border-bottom:none;}
+  .matrix tbody th{padding-top:1.25rem;}
+  .matrix tbody tr{display:block;border-bottom:1px solid var(--border);padding-bottom:1rem;}
+  .matrix tbody tr:last-child{border-bottom:none;}
   .timeline::before{display:none;}
   .tier-featured{margin-top:0;}
   .logo-wall{grid-template-columns:repeat(2,1fr);}
