@@ -532,6 +532,19 @@ textarea:focus-visible{
   font-size:0.8125rem;color:var(--muted-foreground);
   margin-top:1.5rem;font-style:italic;
 }
+.wall-heading{
+  font-family:var(--font-mono);
+  font-size:0.75rem;font-weight:400;
+  text-transform:uppercase;letter-spacing:0.15em;
+  color:var(--muted-foreground);
+  margin:0 0 1rem;
+}
+/* A lone current client reads as featured rather than as a gap in the grid. */
+.logo-wall-current{grid-template-columns:repeat(2,1fr);}
+.logo-wall-current .logo-tile{min-height:8.5rem;}
+.logo-wall-current .wordmark{font-size:1.375rem;color:var(--foreground);}
+.logo-wall-current .logo-tile{border-color:rgba(0,82,255,0.25);box-shadow:var(--shadow-md);}
+.logo-wall-prior{grid-template-columns:repeat(3,1fr);}
 
 /* ============================================================
    PROCESS TIMELINE
